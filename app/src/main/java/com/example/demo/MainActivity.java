@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //notification_activity
         // Check for POST_NOTIFICATIONS permission for Android Tiramisu (API level 33)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(MainActivity.this,
@@ -47,7 +48,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void makeNotification() {
+        // tao 1 kenh thong bao
         String channelID = "CHANNEL_ID_NOTIFICATION";
+        //
         NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(getApplicationContext(), channelID);
         builder.setSmallIcon(R.drawable.ic_notifications)
@@ -57,12 +60,15 @@ public class MainActivity extends AppCompatActivity {
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
         Intent intent = new Intent(getApplicationContext(), NotificationActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        // tao screen moi co du lieu la date va noi dung la...
         intent.putExtra("data", "Some value to be passed here");
+        //giống cái button đổi sceen hiện tại sang sceen đc thông báo
         PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(),
                 0, intent, PendingIntent.FLAG_MUTABLE);
+        //Thiết lập PendingIntent để thông báo có thể thực thi hành động khi người dùng nhấn vào nó
         builder.setContentIntent(pendingIntent);
-
+        //quản lý thông báo
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 

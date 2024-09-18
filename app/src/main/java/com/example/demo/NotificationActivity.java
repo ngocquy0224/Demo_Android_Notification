@@ -1,6 +1,7 @@
 package com.example.demo;
 
-import android.content.Intent;
+import static com.example.demo.R.id.textViewData;
+
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -18,7 +19,7 @@ public class NotificationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_notification);
-        textView = findViewById(R.id.textViewData);
+        textView = findViewById(textViewData);
         String data = getIntent().getStringExtra("data");
         textView.setText(data);
     }
